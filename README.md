@@ -1,50 +1,59 @@
-# Welcome to your Expo app 👋
+# Veriff Expo Demo
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Expo managed React Native app with strict TypeScript and feature-based Veriff integration.
 
-## Get started
+## What this project demonstrates
 
-1. Install dependencies
+- Expo managed workflow (no direct `ios/` or `android/` edits)
+- Strict TypeScript architecture
+- Feature-based Veriff module under `src/features/veriff`
+- Flow mode toggle:
+  - `doc-only`
+  - `doc-selfie`
+- Frontend + separate backend pattern for secure Veriff integration
 
-   ```bash
-   npm install
-   ```
+## App setup
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+1. Install dependencies:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Create `.env` from `.env.example`:
 
-## Learn more
+```bash
+cp .env.example .env
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3. Set `EXPO_PUBLIC_API_BASE_URL` to your backend service URL.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+4. Start app:
 
-## Join the community
+```bash
+npx expo start
+```
 
-Join our community of developers creating universal apps.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## Veriff dashboard URLs (copy/paste)
+
+- **Callback URL**: `veriffdemo://verification/pending`
+- **Decision webhook URL**: `https://<your-active-tunnel>.trycloudflare.com/veriff/webhook`
+- **Webhook events URL**: optional for this demo; leave disabled unless you need start/submit event notifications.
+
+Notes:
+
+- The callback URL is a mobile deep link and should use the app scheme from `app.config.ts` (`veriffdemo`).
+- The tunnel URL changes each time you restart quick `cloudflared`; update the webhook URL in Veriff when it changes.
+
+## Mobile API contract
+
+- `GET /health` — health check
+- `POST /veriff/session` — creates a Veriff session and returns `verificationUrl`
+
+## Security notes
+
+- Never keep `API_SECRET` in the Expo app.
+- Keep Veriff secrets in backend env only.
+- Rotate keys after sharing them in plaintext.
