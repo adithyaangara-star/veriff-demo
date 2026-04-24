@@ -34,8 +34,6 @@ cp .env.example .env
 npx expo start
 ```
 
-
-
 ## Veriff dashboard URLs (copy/paste)
 
 - **Callback URL**: `veriffdemo://verification/pending`
