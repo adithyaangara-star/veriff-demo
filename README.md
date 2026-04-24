@@ -20,7 +20,7 @@ Expo managed React Native app with strict TypeScript and feature-based Veriff in
 npm install
 ```
 
-2. Create `.env` from `.env.example`:
+2. Create `.env`:
 
 ```bash
 cp .env.example .env
@@ -33,17 +33,6 @@ cp .env.example .env
 ```bash
 npx expo start
 ```
-
-## Veriff dashboard URLs (copy/paste)
-
-- **Callback URL**: `veriffdemo://verification/pending`
-- **Decision webhook URL**: `https://<your-active-tunnel>.trycloudflare.com/veriff/webhook`
-- **Webhook events URL**: optional for this demo; leave disabled unless you need start/submit event notifications.
-
-Notes:
-
-- The callback URL is a mobile deep link and should use the app scheme from `app.config.ts` (`veriffdemo`).
-- The tunnel URL changes each time you restart quick `cloudflared`; update the webhook URL in Veriff when it changes.
 
 ## Mobile API contract
 
